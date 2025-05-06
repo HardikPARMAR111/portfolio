@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 
 export default function page() {
+    const [current,setCurrent]=useState(0);
     const projects=[
         {
             title:"Portfolio Website",
@@ -15,10 +16,8 @@ export default function page() {
             description:"A day to day task handling site to manage your tasks effortlessly",
             tech:["React","Bootstrap"],
             github:"https://github.com/HardikPARMAR111"
-        }
-        
+        }   
     ]
-    const [current,setCurrent]=useState(0);
     const nextslide=()=>{
         setCurrent((prev)=>(prev+1)%projects.length);
     }
@@ -28,7 +27,6 @@ export default function page() {
 
   return (
     <>
-
        <div className='w-full max-w-xl mx-auto py-12 px-4'>
             <div className='relative w-full overflow-hidden rounded-xl border border-gray-700 bg-gray-900 h-64'>
                 <div className='flex h-full transition-transform duration-500' style={{transform : `translateX(-${current*100}%)`,width:`${100}%`,}}>
