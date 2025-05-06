@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react';
 
-export default function page() {
+export default function Projectspage() {
     const [current,setCurrent]=useState(0);
     const projects=[
         {
