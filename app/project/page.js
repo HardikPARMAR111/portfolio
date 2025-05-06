@@ -1,9 +1,10 @@
 "use client"
 import React from 'react'
 import { useState } from 'react';
-100
 
-function page() {
+import React from 'react'
+
+export default function page() {
     const projects=[
         {
             title:"Portfolio Website",
@@ -52,4 +53,5 @@ function page() {
   );
 }
 
-export default page
+
+
