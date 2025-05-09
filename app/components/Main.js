@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Main = () => {
@@ -11,7 +12,7 @@ const Main = () => {
             <p className='text-xl text-neutral-300 mb-6'>
                 A passionate web developer who loves building cool stuff.
             </p>
-            <a href="#projects" className='px-6 py-3 bg-gray-700 text-white rounded-full transition-colors duration-300 ease-in-out hover:bg-black '> View My Work </a>
+            <Link href="/project" className='px-6 py-3 bg-gray-700 text-white rounded-full transition-colors duration-300 ease-in-out hover:bg-black '> View My Work </Link>
         </div>
       </section>
     </div>
