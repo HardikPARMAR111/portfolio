@@ -216,7 +216,7 @@ export default function HomePage() {
       <section id="contact" className="mx-auto max-w-6xl px-6 pb-24">
         <div className="rounded-3xl border border-border bg-surface px-8 py-14 text-center">
           <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-            Let's build something.
+            Let&apos;s build something.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm text-muted">
             Open to freelance projects and full-time roles. Usually reply within
