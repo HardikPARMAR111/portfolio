@@ -14,7 +14,7 @@ const socialLinks = [
     label: "LinkedIn",
     icon: Linkedin,
   },
-  { href: "mailto:hello@yourname.dev", label: "Email", icon: Mail },
+  { href: "mailto:parmarhardik0192@gmail.com", label: "Email", icon: Mail },
 ];
 
 const Footer = () => {
