@@ -1,19 +1,65 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const socialLinks = [
+  { href: "https://github.com/HardikPARMAR111", label: "GitHub", icon: Github },
+  {
+    href: "https://linkedin.com/in/hardik-parmar-747071353",
+    label: "LinkedIn",
+    icon: Linkedin,
+  },
+  { href: "mailto:hello@yourname.dev", label: "Email", icon: Mail },
+];
 
 const Footer = () => {
   return (
-    <div>
-      <footer className='flex justify-around bg-black text-white py-8 sticky bottom-0 z-50'>
-        <div className='text-center'>Copyright | All Rights Reserved.</div>
-        <ul className='flex gap-2 text-sm'>
-            <Link href="/"><li className='text-sm'>home</li></Link>
-            <Link href="/about"><li className='text-sm'>about</li></Link>
-            <Link href="/contact"><li className='text-sm'>contact</li></Link>
-        </ul>
-      </footer>
-    </div>
-  )
-}
+    <footer className="border-t border-border bg-surface">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 text-sm sm:flex-row sm:justify-between">
+        <p className="text-muted">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-display text-foreground">Your Name</span>. All
+          rights reserved.
+        </p>
 
-export default Footer
+        <ul className="flex items-center gap-6">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-muted transition-colors hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <ul className="flex items-center gap-3">
+          {socialLinks.map(({ href, label, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
+                aria-label={label}
+                className="hover-glow-primary flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-primary hover:text-primary"
+              >
+                <Icon size={16} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

@@ -1,49 +1,81 @@
-"use client"
-import React from 'react'
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import Link from 'next/link'
+"use client";
+import React from "react";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Navbar() {
-  const [collapse , Setcollapse]=useState(false)
-  const toggle=()=>{
-    Setcollapse(!collapse)
-  }
+  const [collapse, setCollapse] = useState(false);
+  const toggle = () => setCollapse(!collapse);
+
   return (
-    <div>
-       <div>
-        <nav className="bg-black shadow-md sticky top-0 z-50">
+    <nav
+      className="sticky top-0 z-50 border-b backdrop-blur"
+      style={{
+        background: "rgba(5, 6, 15, 0.85)",
+        borderColor: "var(--color-border)",
+      }}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+        <Link
+          href="/"
+          className="font-display text-lg font-semibold tracking-tight transition-colors"
+          style={{ color: "var(--color-text)" }}
+        >
+          <span style={{ color: "var(--color-primary)" }}>{"<"}</span>
+          HARDIK PARMAR
+          <span style={{ color: "var(--color-secondary)" }}>{"/>"}</span>
+        </Link>
 
-          <div className=" max-w-7xl mx-auto flex items-center justify-between px-4 py-4"><h2 className='text-white font-bold hover:text-blue-800 transition-colors'>MY PORTFOLIO</h2>
+        <div className="hidden items-center gap-1 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="nav-link rounded-lg px-4 py-2 text-sm font-medium"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
 
-          
-
-          <div className={`hidden md:flex p-0 text-white`}>
-
-            <Link href="/" className=" px-4 py-2 hover:text-red-400 ">Home</Link>
-
-            <Link href="/about" className=" px-4 py-2  hover:text-red-400 ">About</Link>
-
-            <Link href="/contact" className=" px-4 py-2 hover:text-red-400 ">Contact</Link>
-
-            <Link href="/project" className=" px-4 py-2 hover:text-red-400 ">Projects</Link>
-
-          </div>
-
-          <button onClick={toggle} className='md:hidden text-white focus:outline-none'>{collapse ? <X size="28"/> : <Menu size={28}/>}</button>
-          </div>
-          {collapse && (
-            <div className='md:hidden bg-blackpx-4 pb-4 flex flex-col space-y-3'>
-                <Link href="/" className=" px-4 py-2 text-white hover:text-red-400 hover:bg-gray-900 transition-colors">Home</Link>
-
-                <Link href="/about" className=" px-4 py-2  hover:text-red-400 hover:bg-gray-900 transition-colors">About</Link>
-
-                <Link href="/contact" className=" px-4 py-2 hover:text-red-400 hover:bg-gray-900 transition-colors">Contact</Link>
-
-                <Link href="/project" className=" px-4 py-2 hover:text-red-400 hover:bg-gray-900 transition-colors ">Projects</Link>
-            </div>
-          )}
-        </nav>
+        <button
+          onClick={toggle}
+          aria-label="Toggle menu"
+          className="btn-glow rounded-lg p-1.5 md:hidden"
+          style={{ color: "var(--color-text)" }}
+        >
+          {collapse ? <X size={26} /> : <Menu size={26} />}
+        </button>
       </div>
-    </div>
-  )
+
+      {collapse && (
+        <div
+          className="flex flex-col gap-1 border-t px-4 py-4 md:hidden"
+          style={{
+            borderColor: "var(--color-border)",
+            background: "var(--color-surface)",
+          }}
+        >
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setCollapse(false)}
+              className="nav-link rounded-lg px-4 py-3 text-sm font-medium"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </nav>
+  );
 }

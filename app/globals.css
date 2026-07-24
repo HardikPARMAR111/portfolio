@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------
+   Theme tokens (Tailwind v4)
+   Anything under --color-* automatically becomes a utility:
+   bg-primary, text-secondary, border-accent, bg-primary/10, etc.
+   No tailwind.config.js needed — this @theme block IS the config.
+--------------------------------------------------------- */
+@theme {
+  --color-background: #05060f; /* deep space base */
+  --color-surface: #0d0f1e; /* cards / panels */
+  --color-surface-hover: #12142a;
+
+  --color-primary: #00e5ff; /* electric cyan  - React */
+  --color-secondary: #b537f2; /* neon violet    - Express/brand */
+  --color-accent: #39ff88; /* neon green     - MongoDB/Node */
+  --color-highlight: #ff2e97; /* neon magenta   - call-outs */
+
+  --color-foreground: #e8ecf7;
+  --color-muted: #7d879c;
+  --color-border: #1c2038;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground;
+  font-family: "Inter", sans-serif;
+  background-image: radial-gradient(
+      circle at 15% 20%,
+      color-mix(in srgb, var(--color-primary) 8%, transparent),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      color-mix(in srgb, var(--color-secondary) 8%, transparent),
+      transparent 35%
+    );
+  background-attachment: fixed;
+}
+
+/* ---------------------------------------------------------
+   Orbit signature animation (hero)
+   No Tailwind utility covers the counter-rotation pairing,
+   so this stays as custom CSS.
+--------------------------------------------------------- */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit 20s linear infinite;
+}
+
+.animate-counter-orbit {
+  animation: counter-orbit 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit,
+  .animate-counter-orbit {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Text glow (text-shadow has no Tailwind utility)
+--------------------------------------------------------- */
+.text-glow-primary {
+  text-shadow: 0 0 24px
+    color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+
+.text-glow-secondary {
+  text-shadow: 0 0 24px
+    color-mix(in srgb, var(--color-secondary) 45%, transparent);
+}
+
+/* ---------------------------------------------------------
+   Colored glow shadows (box-shadow color has no core utility)
+   Static "glow-*"     = always-on ring, used on small badges/nodes
+   "hover-glow-*"      = shadow on hover, paired with Tailwind's
+                         own hover:-translate-y-1 / transition utilities
+--------------------------------------------------------- */
+.glow-primary {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+.glow-secondary {
+  box-shadow: 0 0 18px
+    color-mix(in srgb, var(--color-secondary) 45%, transparent);
+}
+.glow-accent {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.glow-highlight {
+  box-shadow: 0 0 18px
+    color-mix(in srgb, var(--color-highlight) 45%, transparent);
+}
+
+.hover-glow-primary:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+.hover-glow-secondary:hover {
+  box-shadow: 0 0 30px
+    color-mix(in srgb, var(--color-secondary) 35%, transparent);
+}
+.hover-glow-accent:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+.hover-glow-highlight:hover {
+  box-shadow: 0 0 30px
+    color-mix(in srgb, var(--color-highlight) 35%, transparent);
+}
+
+.btn-glow:active {
+  transform: scale(0.97);
+}
+
+::selection {
+  @apply bg-secondary text-white;
+}
+
+:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-primary;
 }
