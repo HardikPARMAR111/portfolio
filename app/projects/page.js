@@ -101,7 +101,7 @@ export default function ProjectsPage() {
           04 PROJECTS
         </span>
         <h1 className="font-display mt-6 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
-          Things I've{" "}
+          Things I&apos;ve{" "}
           <span
             className="text-glow-primary"
             style={{ color: "var(--color-primary)" }}
